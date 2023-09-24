@@ -27,13 +27,37 @@
       "name": "NaMLab gGmbH",
       "position": "Scientist",
       "url": "https://namlab.com",
-      "startDate": "2022-06-01",
+      "startDate": "2022-06",
       "endDate": "now",
       "summary": "Fabrication, electrical characterization on modeling of emerging memory devices for integration with neuromorphic CMOS systems. Focus on integration of HfO2-based FeRAM with CMOS circuits to realise functional blocks for neurons and synapses with biological time-scales in spiking neural networks.",
       "highlights": [
         "FeRAM",
         "Neuromorphic VLSI"
       ]
+    },
+    { 
+      "name": "Black Semiconductor GmbH",
+      "position": "Engineer",
+      "location": "Aachen, Germany",
+      "startDate": "2022-03",
+      "endDate": "2022-05",
+      "summary": "Continuation of the previous work on the development of graphene-based electro-optical modulators and photodetectors"
+    },
+    {
+      "name": "AMO GmbH",
+      "position": "Student assistant/Intern",
+      "url": "https://www.amo.de/",
+      "startDate": "2020-11",
+      "endDate": "2022-02",
+      "summary": "Fabrication and optical/radio-frequency characterization of graphene-based electro-optical modulators and photodetectors. Process development for i-line lithography, reactive sputter deposition of optical materials. Development of a process flow to pattern, electrically contact and passivate graphene."
+    },
+    {
+      "name": "Institut für Werkstoffe der Elektrotechnik I, RWTH Aachen",
+      "position": "Student assistant",
+      "url": "https://www.iwe1.rwth-aachen.de/",
+      "startDate": "2019-11",
+      "endDate": "2020-09",
+      "summary": "Fabrication and electro-chemical characterisation of on-chip reference electrodes for biosensor applications. Development of a deposition process to increase the reliability of organic semiconductor-based electrodes"
     }
   ],
   "volunteer": [],
@@ -85,7 +109,29 @@
   ],
   "certificates": [],
   "publications": [],
-  "skills": [],
+  "skills": [
+    {
+      "level": "",
+      "keywords": [
+        "Lithography (i-line, UV, e-beam), ",
+        "Deposition (ALD, PVD) and Etching (ICP-RIE)",
+        "Metrology (SEM, Raman, AFM, GIXRD)."
+      ],
+      "name": "Process Integration "
+    },
+    {
+      "keywords": [
+        "NVM devices reliability and variability"
+      ],
+      "name": "Electrical Characterization "
+    },
+    {
+      "keywords": [
+        " physics-based Verilog-A device models for use in SPICE/Cadence Spectre"
+      ],
+      "name": "Compact Modeling "
+    }
+  ],
   "languages": [
     {
       "language": "German",
