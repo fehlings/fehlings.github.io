@@ -9,5 +9,3 @@ description: Curriculum Vitae
 toc:
   sidebar: left
 ---
-
-Test
