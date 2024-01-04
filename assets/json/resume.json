@@ -24,18 +24,24 @@
   },
   "work": [
     {
+      "name": "University of Groningen",
+      "position": "PhD candidate",
+      "url": "https://www.rug.nl/research/zernike/",
+      "startDate": "2024-01",
+      "endDate": "now",
+      "summary": "Fabrication, electrical characterization on modeling of emerging memory devices for integration with neuromorphic CMOS systems in the course of the ERC starting grant MEMRINESS. Focus on integration of HfO2-based FeRAM with CMOS circuits to realise functional blocks for neurons and synapses with biological time-scales in spiking neural networks.",
+      "highlights": ["FeRAM", "Neuromorphic VLSI"]
+    },
+    {
       "name": "NaMLab gGmbH",
       "position": "Scientist",
       "url": "https://namlab.com",
       "startDate": "2022-06",
-      "endDate": "now",
-      "summary": "Fabrication, electrical characterization on modeling of emerging memory devices for integration with neuromorphic CMOS systems. Focus on integration of HfO2-based FeRAM with CMOS circuits to realise functional blocks for neurons and synapses with biological time-scales in spiking neural networks.",
-      "highlights": [
-        "FeRAM",
-        "Neuromorphic VLSI"
-      ]
+      "endDate": "2023-12",
+      "summary": "Fabrication, electrical characterization on modeling of emerging memory devices for integration with neuromorphic CMOS systems in the course of the ERC starting grant MEMRINESS.",
+      "highlights": ["FeRAM", "CMOS"]
     },
-    { 
+    {
       "name": "Black Semiconductor GmbH",
       "position": "Engineer",
       "location": "Aachen, Germany",
@@ -63,16 +69,14 @@
   "volunteer": [],
   "education": [
     {
-      "institution": "Technische Universität Dresden, Germany",
-      "url": "https://tu-dresden.de",
-      "area": "Electrical Engineering",
+      "institution": "University of Groningen, The Netherlands",
+      "url": "https://www.rug.nl/",
+      "area": "Science and Engineering",
       "studyType": "PhD",
       "startDate": "2022",
       "endDate": "now",
       "score": "",
-      "courses": [
-        "Focus topic: Nanoelectronics"
-      ]
+      "courses": ["Ongoing", "Continued from TU Dresden"]
     },
     {
       "institution": "RWTH Aachen, Germany",
@@ -82,9 +86,7 @@
       "startDate": "2019",
       "endDate": "2022",
       "score": "",
-      "courses": [
-        "Focus topic: Micro- and Nanoelectronics"
-      ]
+      "courses": ["Focus topic: Micro- and Nanoelectronics"]
     },
     {
       "institution": "RWTH Aachen, Germany",
@@ -94,9 +96,7 @@
       "startDate": "2016",
       "endDate": "2019",
       "score": "",
-      "courses": [
-        "Focus topic: Micro- and Nanoelectronics"
-      ]
+      "courses": ["Focus topic: Micro- and Nanoelectronics"]
     }
   ],
   "awards": [
@@ -120,9 +120,7 @@
       "name": "Process Integration "
     },
     {
-      "keywords": [
-        "NVM devices reliability and variability"
-      ],
+      "keywords": ["NVM devices reliability and variability"],
       "name": "Electrical Characterization "
     },
     {
