@@ -30,7 +30,7 @@
   doi={10.1109/ISCAS58744.2024.10558196},
   ISSN={2158-1525},
   month={May},
-  selected={true}
+  pdf={https://pure.rug.nl/ws/portalfiles/portal/1065684534/Coincidence_Detection_with_an_Analog_Spiking_Neuron_Exploiting_Ferroelectric_Polarization.pdf}
 }
 
 @article{fehlings2024heracles,
@@ -43,4 +43,52 @@
   pdf={https://arxiv.org/pdf/2410.07791},      
   year={2024},
   selected={true}
+}
+
+@INPROCEEDINGS{11044070,
+  author={L. Fehlings and Chowdhury, Muhtasim Alam and Saber Latibari, Banafsheh and Salehi, Soheil and Covi, Erika},
+  booktitle={2025 IEEE International Symposium on Circuits and Systems (ISCAS)}, 
+  title={Reliability of Capacitive Read in Arrays of Ferroelectric Capacitors}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-5},
+  abstract={The non-destructive capacitance read-out of ferroelectric capacitors (FeCaps) based on doped HfO2 metal-ferroelectric-metal (MFM) structures offers the potential for low-power and highly scalable crossbar arrays. This is due to a number of factors, including the selector-less design, the absence of sneak paths, the power-efficient charge-based read operation, and the reduced IR drop. Nevertheless, a reliable capacitive readout presents certain challenges, particularly in regard to device variability and the trade-off between read yield and read disturbances, which can ultimately result in bit-flips. This paper presents a digital read macro for HfO2 FeCaps and provides reliability analysis for the capacitive readout of HfO2 FeCaps, taking device variability and yield challenges into account. An experimentally calibrated physics-based compact model of HfO2 FeCaps is employed to investigate the reliability of the read-out operation of the FeCap macro through Monte Carlo simulations. Based on this analysis, we identify limitations posed by the device variability and propose potential mitigation strategies through design-technology co-optimization (DTCO) of the FeCap device characteristics and the CMOS circuit design. Finally, we examine the potential applications of the FeCap macro in the context of secure hardware. We identify potential security threats and propose strategies to enhance the robustness of the system.},
+  keywords={Semiconductor device modeling;Monte Carlo methods;Capacitors;Semiconductor device reliability;Switches;Capacitance;Robustness;Hafnium compounds;Reliability;Integrated circuit reliability;Ferroelectric Capacitors (FeCap);Reliability;Non-destructive Read;Fault Injection Attack;Hardware Security},
+  doi={10.1109/ISCAS56072.2025.11044070},
+  url={https://arxiv.org/pdf/2506.09480},   
+  pdf={https://arxiv.org/pdf/2506.09480},
+  selected={true}
+  }
+
+
+@article{fehlings2025bruno,
+  title={Bruno: Backpropagation Running Undersampled for Novel device Optimization},
+  author={L. Fehlings and Zhang, Bojian and Gibertini, Paolo and Nicholson, Martin A and Covi, Erika and Quintana, Fernando M},
+  journal={arXiv preprint, under review in Neurocomputing},
+  year={2025},
+  abstract={Recent efforts to improve the efficiency of neuromorphic and machine learning systems have fo-
+    cused on the development of application-specific integrated circuits (ASICs), which provides hard-
+    ware specialized for the deployment of neural networks, leading to potential gains in efficiency and
+    performance. These systems typically feature an architecture that goes beyond the von Neumann ar-
+    chitecture employed in general-purpose hardware such as graphic processing units (GPUs). Neural
+    networks developed for this specialised hardware then needs to take into account the specifics of the
+    hardware platform, which requires novel training algorithms and accurate models of the hardware,
+    since they cannot be abstracted as a general-purpose computing platform. In this work, we present
+    a bottom-up approach to train neural networks for hardware based on spiking neurons and synapses
+    built on ferroelectric capacitor (FeCap) and Resistive switching non-volatile devices (RRAM) re-
+    spectively. In contrast to the more common approach of designing hardware to fit existing abstract
+    neuron or synapse models, this approach starts with compact models of the physical device to model
+    the computational primitive of the neurons. Based on these models, a training algorithm is devel-
+    oped that can reliably backpropagate through these physical models, even when applying common
+    hardware limitations, such as stochasticity, variability, and low bit precision. The training algorithm
+    is then tested on a spatio-temporal dataset with a network composed of quantized synapses based on
+    RRAM and ferroelectric leaky integrate-and-fire (FeLIF) neurons. The performance of the network
+    is compared with different networks composed of leaky integrate-and-fire (LIF) neurons. The re-
+    sults of the experiments show the potential advantage of using BRUNO to train networks with FeLIF
+    neurons, by achieving a reduction in both time and memory for detecting spatio-temporal patterns
+    with quantized synapses.},
+  url={https://arxiv.org/abs/2505.17791},   
+  pdf={https://arxiv.org/pdf/2505.17791}, 
+  doi={10.48550/arXiv.2505.17791}
 }

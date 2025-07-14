@@ -1,7 +1,8 @@
 github_users:
-
 repo_description_lines_max: 2
 
 github_repos:
   - bics-rug/heracles
+  - bics-rug/heracles-testbenches
   - fehlings/boilerplot
+  - bics-rug/dsp-exercises
