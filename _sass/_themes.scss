@@ -77,18 +77,10 @@
 }
 
 html[data-theme="dark"] {
-<<<<<<< HEAD
-  color-scheme: dark;
-  --global-bg-color: #{$grey-color-dark};
-  --global-code-bg-color: #{$code-bg-color-dark};
-  --global-text-color: #{$grey-color-light};
-  --global-text-color-light: #{$grey-color};
-=======
   --global-bg-color: #{$polar-night-4};
   --global-code-bg-color: #{$polar-night-3};
   --global-text-color: #{$white-color};
   --global-text-color-light: #{$white-color};
->>>>>>> b50d588 (change theme)
   --global-theme-color: #{$cyan-color};
   --global-hover-color: #{$cyan-color};
   --global-hover-text-color: #{$white-color};

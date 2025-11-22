@@ -3,12 +3,6 @@
 # -----------------------------------------------------------------------------
 
 title: blank # the website title (if blank, full name will be used instead)
-<<<<<<< HEAD
-first_name: You
-middle_name: R.
-last_name: Name
-contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
 =======
 first_name: Luca
 middle_name: 
@@ -75,8 +69,6 @@ serve_schema_org: false # Include Schema.org in the HTML head
 og_image: # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
-<<<<<<< HEAD
-=======
 # Social integration
 # -----------------------------------------------------------------------------
 
@@ -121,7 +113,6 @@ contact_note: >
 
 
 # -----------------------------------------------------------------------------
->>>>>>> 5da696e (restore old page contents)
 # Analytics and search engine verification
 # -----------------------------------------------------------------------------
 
@@ -200,8 +191,6 @@ collections:
     output: true
   projects:
     output: true
-<<<<<<< HEAD
-=======
     permalink: /:collection/:title/
 
 announcements:
@@ -213,7 +202,6 @@ latest_posts:
   enabled: false
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
->>>>>>> ffdb540 (remove latest posts)
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
