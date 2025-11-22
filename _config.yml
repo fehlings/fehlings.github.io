@@ -3,12 +3,10 @@
 # -----------------------------------------------------------------------------
 
 title: blank # the website title (if blank, full name will be used instead)
-=======
 first_name: Luca
 middle_name: 
 last_name: Fehlings
 email: 
->>>>>>> 5da696e (restore old page contents)
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Luca Fehlings's personal web site.
 footer_text: >
