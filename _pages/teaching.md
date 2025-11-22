@@ -6,7 +6,17 @@ description: Teaching experience, from most recent to earliest
 nav: true
 nav_order: 6
 ---
+### Thesis & Project supervision
+*University of Groningen*
+Supervision of the following students:
+- Sai Dutt Kotrakona: Modeling of Fatigue Phenomenon in Hafnia-based Ferroelectrics (2025, Research project) 
+- Jeffrey Wilbrink: Non-destructive capacitive read of Ferroelectric memory (2025, Bachelor thesis)
+- Egidio A. Gallichio: Leakage currents in hafnia-based ferroelectric capacitors: modeling and validation (2024, Master thesis)
 
+### Lecture & Tutorial "Digital Signal Processing"
+*University of Groningen, 2024-2025*
+
+Conceptualization of parts of the lectures and tutorials. Conceptualization and realization of python-based assignments covering FFT, 1D & 2D filters, sampling and quantization. The lecture and tutorials aim to introduce students of the applied physics course to the fundaments of digital signal processing, covering topics such as LTI systems, z-transform and DFT, filters & convolution kernels, sampling & quantization and ADC/DAC circuits.
 
 ### Lab course “Memory Technology 1&2"
 *TU Dresden & NaMLab, 2022-2023*
