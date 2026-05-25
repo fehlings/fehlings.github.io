@@ -2,52 +2,201 @@
 import Layout from "@/layouts/Layout.astro";
 import { publications } from "@/data/cv";
 import { highlightAuthor } from "@/lib/utils";
-import {template} from "@/settings";
+import { template } from "@/settings";
 
-const ALL_PAPERS = publications; // This will be replaced with dynamic data later
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+
+type Publication = {
+    title: string;
+    authors: string; // "A, B, C, and D"
+    journal: string;
+    time: string; // "09 October 2025" | "25-28 May 2025" | "in production"
+    link: string; // always https://doi.org/...
+    arxiv?: string; // arXiv PDF/abs URL, or other direct PDF URL
+    abstract: string;
+};
+
+// ---------------------------------------------------------------------------
+// Schema helpers
+// ---------------------------------------------------------------------------
+
+/** "10.1109/TED.2025.3615577" from "https://doi.org/10.1109/TED.2025.3615577" */
+function extractDoi(link: string): string | undefined {
+    return link.match(/doi\.org\/(.+)/)?.[1];
+}
+
+/**
+ * "2410.07791" from either:
+ *   https://arxiv.org/pdf/2410.07791
+ *   https://arxiv.org/abs/2511.21267
+ * Returns undefined for non-arXiv URLs (e.g. RUG portal).
+ */
+function extractArxivId(arxiv?: string): string | undefined {
+    if (!arxiv) return undefined;
+    return arxiv.match(/arxiv\.org\/(?:abs|pdf)\/([^\s?#/]+(?:v\d+)?)/i)?.[1];
+}
+
+/**
+ * "Luca Fehlings, Thomas Mikolajick, Beatriz Noheda, and Erika Covi"
+ * → [{ "@type": "Person", name: "Luca Fehlings" }, ...]
+ */
+function parseAuthors(raw: string): { "@type": "Person"; name: string }[] {
+    return raw
+        .replace(/,?\s+and\s+/g, ", ") // ", and X" or " and X" → ", X"
+        .split(/,\s+/)
+        .map((n) => n.trim())
+        .filter(Boolean)
+        .map((name) => ({ "@type": "Person" as const, name }));
+}
+
+/**
+ * Extract 4-digit year or return undefined for "in production" etc.
+ * "09 October 2025" → "2025"
+ * "25-28 May 2025"  → "2025"
+ * "in production"   → undefined
+ */
+function extractYear(time: string): string | undefined {
+    return time.match(/\b(20\d{2})\b/)?.[1];
+}
+
+// ---------------------------------------------------------------------------
+// Build JSON-LD ItemList
+// ---------------------------------------------------------------------------
+
+const itemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Publications – Luca Fehlings",
+    itemListElement: (publications as Publication[]).map((paper, i) => {
+        const doi = extractDoi(paper.link);
+        const arxivId = extractArxivId(paper.arxiv);
+        const year = extractYear(paper.time);
+
+        const article: Record<string, unknown> = {
+            "@type": "ScholarlyArticle",
+            headline: paper.title,
+            author: parseAuthors(paper.authors),
+            abstract: paper.abstract,
+        };
+
+        if (year) article["datePublished"] = year;
+        if (paper.journal)
+            article["isPartOf"] = {
+                "@type": "Periodical",
+                name: paper.journal,
+            };
+        if (doi) article["sameAs"] = `https://doi.org/${doi}`;
+
+        if (arxivId) {
+            // Canonical arXiv abstract page as url; PDF as encoding
+            article["url"] = `https://arxiv.org/abs/${arxivId}`;
+            article["encoding"] = {
+                "@type": "MediaObject",
+                encodingFormat: "application/pdf",
+                contentUrl: `https://arxiv.org/pdf/${arxivId}`,
+            };
+        } else if (paper.arxiv) {
+            // Non-arXiv direct PDF (e.g. RUG portal) — expose as encoding only
+            article["encoding"] = {
+                "@type": "MediaObject",
+                encodingFormat: "application/pdf",
+                contentUrl: paper.arxiv,
+            };
+        }
+
+        return { "@type": "ListItem", position: i + 1, item: article };
+    }),
+};
+
+const ALL_PAPERS = publications as Publication[];
 ---
 
+<!--
+  Requires <slot name="head" /> inside <head> in Layout.astro.
+  If absent, add that single line to your Layout and this page will work.
+-->
 <Layout title="Papers">
-  <div class="prose max-w-none">
-    <h1 class="text-3xl font-bold mb-8">Publications</h1>
+    <script
+        slot="head"
+        type="application/ld+json"
+        set:html={JSON.stringify(itemList)}
+    />
 
-    <div class="space-y-8">
-      {
-        ALL_PAPERS.map((paper) => (
-          <div class="card bg-base-200">
-            <div class="card-body">
-              <h2 class="card-title text-xl">
-                <a href={template.base + paper.link} class="hover:text-accent">
-                  {paper.title}
-                </a>
-              </h2>
-              <p class="text-base mb-2">
-                <span class="font-medium">Authors:</span>{" "}
-                <span set:html={highlightAuthor(paper.authors)} />
-              </p>
-              <p class="text-sm mb-3">
-                <span class="italic">{paper.journal}</span> • {paper.time}
-              </p>
-              <p class="text-sm text-base-content/80">{paper.abstract}</p>
-              <div class="card-actions justify-end mt-4">
-                <a href={paper.link} class="btn btn-sm btn-secondary text-secondary-content">
-                  Read Paper
-                </a>
-              </div>
+    <div class="prose max-w-none">
+        <h1 class="text-3xl font-bold mb-8">Publications</h1>
+
+        <div class="space-y-8">
+            {
+                ALL_PAPERS.map((paper) => {
+                    const arxivId = extractArxivId(paper.arxiv);
+                    // PDF href: prefer canonical arXiv PDF, fall back to raw arxiv field
+                    const pdfHref = arxivId
+                        ? `https://arxiv.org/pdf/${arxivId}`
+                        : paper.arxiv;
+
+                    return (
+                        <div class="card bg-base-200">
+                            <div class="card-body">
+                                <h2 class="card-title text-xl">
+                                    <a
+                                        href={template.base + paper.link}
+                                        class="hover:text-accent"
+                                    >
+                                        {paper.title}
+                                    </a>
+                                </h2>
+                                <p class="text-base mb-2">
+                                    <span class="font-medium">Authors:</span>{" "}
+                                    <span
+                                        set:html={highlightAuthor(
+                                            paper.authors,
+                                        )}
+                                    />
+                                </p>
+                                <p class="text-sm mb-3">
+                                    <span class="italic">{paper.journal}</span>{" "}
+                                    • {paper.time}
+                                </p>
+                                <p class="text-sm text-base-content/80">
+                                    {paper.abstract}
+                                </p>
+                                <div class="card-actions justify-end mt-4">
+                                    <a
+                                        href={paper.link}
+                                        class="btn btn-sm btn-secondary text-secondary-content"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        Read Paper
+                                    </a>
+                                    {pdfHref && (
+                                        <a
+                                            href={pdfHref}
+                                            class="btn btn-sm btn-outline"
+                                            target="_blank"
+                                            rel="noopener"
+                                        >
+                                            PDF
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })
+            }
+        </div>
+
+        <div class="flex justify-center mt-8">
+            <div class="join">
+                <button class="join-item btn btn-sm">«</button>
+                <button class="join-item btn btn-sm">1</button>
+                <button class="join-item btn btn-sm btn-active">2</button>
+                <button class="join-item btn btn-sm">3</button>
+                <button class="join-item btn btn-sm">»</button>
             </div>
-          </div>
-        ))
-      }
+        </div>
     </div>
-
-    <div class="flex justify-center mt-8">
-      <div class="join">
-        <button class="join-item btn btn-sm">«</button>
-        <button class="join-item btn btn-sm">1</button>
-        <button class="join-item btn btn-sm btn-active">2</button>
-        <button class="join-item btn btn-sm">3</button>
-        <button class="join-item btn btn-sm">»</button>
-      </div>
-    </div>
-  </div>
 </Layout>
