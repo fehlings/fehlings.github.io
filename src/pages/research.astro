@@ -3,67 +3,90 @@ import Layout from "@/layouts/Layout.astro";
 import { profile } from "@/settings";
 import BetterIcon from "@/components/ui/BetterIcon.astro";
 import List from "@/components/ui/List.astro";
-import {RESEARCH_ICONS} from "@/data/researchIcons";
+import { RESEARCH_ICONS } from "@/data/researchIcons";
 
 const { research_areas } = profile;
 ---
 
-<Layout title="Research | Dr. Marie Curie">
-  <div class="prose max-w-none">
-    <h1 class="text-3xl font-bold mb-8">Research Statement</h1>
+<Layout title="Research | Luca Fehlings">
+    <div class="prose max-w-none">
+        <h1 class="text-3xl font-bold mb-8">Research Statement</h1>
 
-    <div class="mb-12">
-      <p class="text-lg mb-6">
-        My research focuses on groundbreaking investigations into radioactivity and the discovery of new radioactive elements. Through meticulous experimental techniques and innovative methodologies, I aim to advance our understanding of radioactive phenomena and their applications in both physics and chemistry.
-      </p>
-      <p class="text-lg mb-6">
-        This interdisciplinary approach has led to significant discoveries, including the isolation of polonium and radium, contributing to the foundation of modern nuclear physics and radiochemistry.
-      </p>
+        <div class="mb-12">
+            <p class="text-lg mb-6">
+                I research ferroelectric HfO2-based devices and their
+                integration into conventional memory macros as well as
+                neuromorphic CMOS circuits. Together with my colleagues I am
+                realizing circuit building blocks that allow efficient memory
+                storage as well as learning on biological time-scales in
+                hardware. My research interests cover the topics of compact
+                modeling and electrical characterization of semiconductor and
+                memory devices, particularly regarding their integrability and
+                reliability.
+            </p>
+            <p class="text-lg mb-6"></p>
+        </div>
+
+        <h2 class="text-2xl font-bold mb-6">Research Areas</h2>
+        <div class="grid gap-8 mb-12">
+            {
+                research_areas.map((area) => (
+                    <div class="flex gap-6 items-start">
+                        <BetterIcon>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke-width="2"
+                                class="size-6 stroke-accent"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d={
+                                        RESEARCH_ICONS[
+                                            area.field as keyof typeof RESEARCH_ICONS
+                                        ]?.path ||
+                                        RESEARCH_ICONS["computer-science"].path
+                                    }
+                                />
+                            </svg>
+                        </BetterIcon>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">
+                                {area.title}
+                            </h3>
+                            <p class="text-base">{area.description}</p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <List
+            listTitle="Current Projects"
+            listItems={[
+                {
+                    title: "Heracles",
+                    description:
+                        "Heracles is a physics-based compact model for HfO2-based ferroelectric capacitors. It includes thermal models, interface layers and accurately reproduces several device phenomena, such as transient polarization switching and capacitance hysteresis. Heracles consists of a stateful and computationally efficient non-equilibrium thermodynamics description of the device behaviour, allowing for efficient Monte Carlo simulations even in larger analog CMOS circuits. This makes Heracles suitable for Design-Technology Co-Optimization (DTCO) approaches to (analog) compute-in-memory, neuromorphic systems or sensory circuit design.",
+                },
+                {
+                    title: "Olla",
+                    description:
+                        "Olla is an ASIC project realized in a 180 nm CMOS technology, with the target of being a testbench for emerging memory technolgies, such as FeRAM or ReRAM. For this, Olla has post-processable structures where memory devices can be fabricated in the BEOL of the CMOS wafer. These macros then allow the devices to be used in several macros that are designed specifically for emerging memory devices. Thes include characterization macros, memory read-out macros or in a functional yet minimal, asynchronous spiking neural network.",
+                },
+            ]}
+        />
+
+        {
+            /*<h2 class="text-2xl font-bold mb-6">Research Impact</h2>
+        <p class="text-lg mb-6">
+            My research has opened new frontiers in radioactivity studies,
+            leading to practical applications in both scientific research and
+            medical treatments. The discoveries have revolutionized our
+            understanding of atomic structure and radioactive decay processes.
+        </p> */
+        }
     </div>
-
-    <h2 class="text-2xl font-bold mb-6">Research Areas</h2>
-    <div class="grid gap-8 mb-12">
-      {
-        research_areas.map((area) => (
-          <div class="flex gap-6 items-start">
-            <BetterIcon>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke-width="2"
-                class="size-6 stroke-accent"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d={RESEARCH_ICONS[area.field as keyof typeof RESEARCH_ICONS]?.path || RESEARCH_ICONS['computer-science'].path}
-                />
-              </svg>
-            </BetterIcon>
-            <div>
-              <h3 class="text-xl font-semibold mb-2">{area.title}</h3>
-              <p class="text-base">{area.description}</p>
-            </div>
-          </div>
-        ))
-      }
-    </div>
-
-    <List listTitle="Current Projects" listItems={[
-      {
-        title: "Radioactivity Studies",
-        description: "Investigation of radioactive properties in uranium minerals and isolation of new radioactive elements."
-      },
-      {
-        title: "Measurement Techniques",
-        description: "Development of precise methods for measuring radioactive emissions and their properties."
-      }
-    ]} />
-
-    <h2 class="text-2xl font-bold mb-6">Research Impact</h2>
-    <p class="text-lg mb-6">
-      My research has opened new frontiers in radioactivity studies, leading to practical applications in both scientific research and medical treatments. The discoveries have revolutionized our understanding of atomic structure and radioactive decay processes.
-    </p>
-  </div>
 </Layout>
